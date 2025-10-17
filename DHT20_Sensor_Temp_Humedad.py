@@ -4,6 +4,8 @@ from fourwire import FourWire
 import board, busio, os, displayio
 import adafruit_ahtx0
 from adafruit_st7789 import ST7789
+import adafruit_ahtx0
+import time
 
 # Declaracion de Pines - Pantalla LCD - Starter Kit for Pico 2
 mosi_pin = board.GP7 # MOSI
@@ -58,5 +60,8 @@ pantalla.append(text_group)
 print('fin de programa') # imprimir en consola
 
 while True:
-    text_area.text = ("hola")
-    pass
+    text_area.text = (f"Temperatura: {sensor_dht20.temperature:.1f} c"
+                      +"\n"
+                      + f"Humedad: {sensor_dht20.relative_humidity:.1f}%"
+                      )
+    time.sleep(0.5)
